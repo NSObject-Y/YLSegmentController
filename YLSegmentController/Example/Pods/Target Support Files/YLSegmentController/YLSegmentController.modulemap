@@ -1,6 +1,0 @@
-framework module YLSegmentController {
-  umbrella header "YLSegmentController-umbrella.h"
-
-  export *
-  module * { export * }
-}
