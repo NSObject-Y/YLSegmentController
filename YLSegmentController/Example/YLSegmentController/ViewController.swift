@@ -15,9 +15,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let titles = ["推荐","获取","无语"];
         let segmentPageNav = SegmentSliderController(HHMade: self, titles: titles)
-        segmentPageNav?.delegate = self
-        segmentPageNav?.childsViewControllers = [ThreeViewController(),SecViewController(),FirstViewController()]
-        self.view.addSubview(segmentPageNav!)
+        segmentPageNav.delegate = self
+        segmentPageNav.childsViewControllers = [ThreeViewController(),SecViewController(),FirstViewController()]
+        self.view.addSubview(segmentPageNav)
         print("噶你")
     }
 

@@ -70,7 +70,7 @@ class SegmentContentController: UIView {
     
     func setUI() {
         for childVc in childVcs {
-            parentViewController?.addChild(childVc)
+            parentViewController?.addChildViewController(childVc)
         }
         addSubview(collectionView)
         collectionView.reloadData()
