@@ -1,5 +1,5 @@
 //
-//  SegmentSliderController.swift
+//  YLSegmentSliderController.swift
 //
 //
 //  Created by ik100 on 2018/9/27.
@@ -16,12 +16,14 @@ private var totalLabelWidth:CGFloat = 0
 
 
 public protocol SegementSliderDetegate: NSObjectProtocol{
-    func segmentController(_ controller:SegmentSliderController, selectIndex index:Int)
+    func segmentController(_ controller:YLSegmentSliderController, selectIndex index:Int)
+    
+    func segmentContentController(progress: CGFloat, sourceIndex: Int, targetIndex: Int)
     
     func selectImageClick()
 }
 
-public class SegmentSliderController: UIView {
+public class YLSegmentSliderController: UIView {
     
     open weak var delegate: SegementSliderDetegate?
     //选中的颜色
@@ -58,14 +60,14 @@ public class SegmentSliderController: UIView {
     public var childsViewControllers: [UIViewController]?{
         didSet{
             if self.childsViewControllers != nil{
-                
                     if self.segmentType == .Navigation{
                         if segmentContent == nil {
                             let frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height:self.frame.size.height)
+                            print("内容的 高度=====\(self.frame.size.height)")
                             self.segmentContent = SegmentContentController.init(frame: frame, childVcs: self.childsViewControllers!, parentViewController: self.hostViewController)
                             segmentContent!.delegate = self
                             self.addSubview(segmentContent!)
-                            self.bringSubview(toFront: self.navView!)
+                            self.bringSubview(toFront:self.navView!)
                         
                         }
                     }else{
@@ -140,6 +142,7 @@ public class SegmentSliderController: UIView {
         self.hostViewController = hostViewController
         super.init(frame: frame)
         setUI(segmentSliderHeight:segmentSliderHeight)
+        self.isUserInteractionEnabled = true
     }
     
     public convenience init(HHMade hostViewController:UIViewController,titles:[String]) {
@@ -155,7 +158,7 @@ public class SegmentSliderController: UIView {
 }
 
 // MARK:- 设置UI界面
-extension SegmentSliderController {
+extension YLSegmentSliderController {
     func setUI(segmentSliderHeight: CGFloat) {
         
         let navView = UIView()
@@ -252,7 +255,7 @@ extension SegmentSliderController {
 }
 
 // MARK:- 对外暴露的方法
-extension SegmentSliderController {
+extension YLSegmentSliderController {
     /* 参数说明
      *
      * 第一个参数：进度
@@ -345,7 +348,7 @@ extension SegmentSliderController {
 
 
 // MARK:- 监听Label的点击
-extension SegmentSliderController{
+extension YLSegmentSliderController{
     @objc fileprivate func clickTitleLabel(_ tapGes : UITapGestureRecognizer) {
         
         // 0.获取当前Label
@@ -436,9 +439,10 @@ extension SegmentSliderController{
 }
 
 
-extension SegmentSliderController:segmentPageContentControllerDelegate{
+extension YLSegmentSliderController:segmentPageContentControllerDelegate{
     func selectIndexPageContentController(_ contentController: SegmentContentController, progress: CGFloat, sourceIndex: Int, targetIndex: Int) {
         self.setTitleWithProgress(progress, sourceIndex: sourceIndex, targetIndex: targetIndex)
+        self.delegate?.segmentContentController(progress: progress, sourceIndex: sourceIndex, targetIndex: targetIndex)
     }
 }
 

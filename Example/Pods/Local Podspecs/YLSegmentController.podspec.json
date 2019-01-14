@@ -1,6 +1,6 @@
 {
   "name": "YLSegmentController",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "summary": "A short description of YLSegmentController.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/yangsui92@163.com/YLSegmentController",
@@ -12,11 +12,16 @@
     "yangsui92@163.com": "yangsui92@163.com"
   },
   "source": {
-    "git": "https://github.com/yangsui92@163.com/YLSegmentController.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/NSObject-Y/YLSegmentController.git",
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "YLSegmentController/Classes/**/*"
+  "source_files": "YLSegmentController/Classes/**/*",
+  "resource_bundles": {
+    "YLSegmentController": [
+      "YLSegmentController/Assets/*.png"
+    ]
+  }
 }

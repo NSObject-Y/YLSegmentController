@@ -304,7 +304,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YLSegmentController_Tests/Pods-YLSegmentController_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-YLSegmentController_Tests/Pods-YLSegmentController_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -315,7 +315,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLSegmentController_Tests/Pods-YLSegmentController_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YLSegmentController_Tests/Pods-YLSegmentController_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D290AB1F5C67B1229E7A00F /* [CP] Embed Pods Frameworks */ = {
@@ -326,7 +326,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YLSegmentController_Example/Pods-YLSegmentController_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-YLSegmentController_Example/Pods-YLSegmentController_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/YLSegmentController/YLSegmentController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -337,7 +337,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLSegmentController_Example/Pods-YLSegmentController_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YLSegmentController_Example/Pods-YLSegmentController_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CBBE0093086026EE4C9C66A0 /* [CP] Check Pods Manifest.lock */ = {

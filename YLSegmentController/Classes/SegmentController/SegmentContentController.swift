@@ -1,6 +1,6 @@
 //
 //  SegmentContentController.swift
-//  
+//  HouseVideo
 //
 //  Created by ik100 on 2018/9/28.
 //  Copyright © 2018年 shack. All rights reserved.
@@ -8,14 +8,13 @@
 
 import UIKit
 
-
 protocol  segmentPageContentControllerDelegate: NSObjectProtocol{
     func selectIndexPageContentController(_ contentController : SegmentContentController, progress : CGFloat, sourceIndex : Int, targetIndex : Int)
 }
 
 private let ContentCellID = "ContentCellID"
 
-public class SegmentContentController: UIView {
+class SegmentContentController: UIView {
     
     var childVcs : [UIViewController]
     {
@@ -41,7 +40,7 @@ public class SegmentContentController: UIView {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.frame = CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.lightGray
         collectionView.isPagingEnabled = true
         collectionView.bounces = false
         collectionView.dataSource = self
@@ -60,6 +59,7 @@ public class SegmentContentController: UIView {
         self.childVcs = childVcs
         self.parentViewController = parentViewController
         super.init(frame: frame)
+        print("进入 初始化 ==\(frame)")
         // 设置UI
         setUI()
     }
@@ -95,29 +95,39 @@ extension SegmentContentController : UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCellID, for: indexPath)
+        
         for view in cell.contentView.subviews {
             view.removeFromSuperview()
         }
         cell.backgroundColor = UIColor.white
         let childVc = childVcs[(indexPath as NSIndexPath).item]
-        childVc.view.frame = CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: cell.contentView.frame.size.height)
+        childVc.view.frame = CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: self.frame.size.height)
+        print("cell gao do --- \(self.frame.size.height)")
         cell.contentView.addSubview(childVc.view)
+//        childVc.view.snp.makeConstraints { (make) in
+//            make.centerX.equalTo(cell.contentView)
+//            make.height.equalTo(cell.contentView)
+//            make.top.equalTo(cell.contentView)
+//            make.width.equalTo(SCREEN_WIDTH)
+//        }
         return cell
     }
 }
 
 
+
+
 // MARK:- 遵守UICollectionViewDelegate
 extension SegmentContentController : UICollectionViewDelegate {
     
-    private func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
         isForbidScrollDelegate = false
         
         startOffsetX = scrollView.contentOffset.x
     }
     
-    private func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         // 0.判断是否是点击事件
         if isForbidScrollDelegate { return }
@@ -162,7 +172,6 @@ extension SegmentContentController : UICollectionViewDelegate {
             }
         }
         delegate?.selectIndexPageContentController(self, progress: progress, sourceIndex: sourceIndex, targetIndex: targetIndex)
-        print("content ======\(progress)-----\(sourceIndex)---\(targetIndex)")
     }
 }
 

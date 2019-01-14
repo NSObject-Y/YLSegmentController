@@ -14,11 +14,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let titles = ["推荐","获取","无语"];
-        let segmentPageNav = SegmentSliderController(HHMade: self, titles: titles)
+        let segmentPageNav = YLSegmentSliderController(HHMade: self, titles: titles)
         segmentPageNav.delegate = self
         segmentPageNav.childsViewControllers = [ThreeViewController(),SecViewController(),FirstViewController()]
         self.view.addSubview(segmentPageNav)
-        print("噶你")
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,8 +28,12 @@ class ViewController: UIViewController {
 }
 
 extension ViewController:SegementSliderDetegate{
-    func segmentController(_ controller: SegmentSliderController, selectIndex index: Int) {
-        
+    func segmentContentController(progress: CGFloat, sourceIndex: Int, targetIndex: Int) {
+        print("dtabtab")
+    }
+    
+    func segmentController(_ controller: YLSegmentSliderController, selectIndex index: Int) {
+        print("dsdadada,----c=qiehuan")
     }
     
     func selectImageClick() {
