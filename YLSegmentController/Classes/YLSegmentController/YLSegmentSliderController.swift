@@ -207,7 +207,11 @@ extension YLSegmentSliderController {
         
         //设置scrollLine的属性
         scrollView.addSubview(scrollLine)
-        scrollLine.isHidden = self.isHiddenLine
+        if self.selectIndex == 0{
+            scrollLine.isHidden = true
+        }else{
+            scrollLine.isHidden = self.isHiddenLine
+        }
         scrollLine.frame = CGRect(x: firstLabel.center.x - 15, y: 31, width: 30, height: kScrollLineH)
     }
     

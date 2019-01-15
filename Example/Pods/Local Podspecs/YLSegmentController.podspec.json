@@ -1,6 +1,6 @@
 {
   "name": "YLSegmentController",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "summary": "A short description of YLSegmentController.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/yangsui92@163.com/YLSegmentController",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/NSObject-Y/YLSegmentController.git",
-    "tag": "0.1.6"
+    "tag": "0.1.7"
   },
   "platforms": {
     "ios": "8.0"
