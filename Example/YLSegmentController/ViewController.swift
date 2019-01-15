@@ -16,6 +16,8 @@ class ViewController: UIViewController {
         let titles = ["推荐","获取","无语"];
         let segmentPageNav = YLSegmentSliderController(HHMade: self, titles: titles)
         segmentPageNav.delegate = self
+        segmentPageNav.selectTitleColor = UIColor.green
+        segmentPageNav.noSelectTitleColor = UIColor.purple
         segmentPageNav.childsViewControllers = [ThreeViewController(),SecViewController(),FirstViewController()]
         self.view.addSubview(segmentPageNav)
     }

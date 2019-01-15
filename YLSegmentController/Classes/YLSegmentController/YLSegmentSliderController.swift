@@ -27,9 +27,10 @@ public class YLSegmentSliderController: UIView {
     
     open weak var delegate: SegementSliderDetegate?
     //选中的颜色
-    public var selectTitleColor: UIColor = UIColor.blue
+    public var selectTitleColor: UIColor = UIColor.black
     //未选中的颜色
-    public var noSelectTitleColor: UIColor = UIColor.black
+    public var noSelectTitleColor: UIColor = UIColor.init(red: 102/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1.0)
+
     //默认选择index = 0
     public var selectIndex: Int = 0
     //滚动线条颜色
@@ -56,6 +57,8 @@ public class YLSegmentSliderController: UIView {
     public var titleNormalFont: CGFloat = 12.0
     //选中后的字体
     public var titleSelectFont: CGFloat = 15.0
+    
+    public var isChangeFirst:Bool = true
     
     public var childsViewControllers: [UIViewController]?{
         didSet{
@@ -200,7 +203,7 @@ extension YLSegmentSliderController {
     fileprivate func setupBottomLineAndScrollLine() {
         //获取第一个Label
         guard let firstLabel = titleLabels.first else { return }
-        firstLabel.textColor = selectTitleColor
+        firstLabel.textColor = UIColor.white
         
         //设置scrollLine的属性
         scrollView.addSubview(scrollLine)
@@ -221,10 +224,15 @@ extension YLSegmentSliderController {
             label.text = title
             label.tag = index
             label.font = UIFont.getFontWith(size: 16, fontName: "PingFangSC-Semibold")
-            label.textColor = noSelectTitleColor
+            label.textColor = UIColor.white
             label.textAlignment = .center
             if index != 0 {
                 label.font = UIFont.getFontWith(size: 14, fontName: "PingFangSC-Regular")
+                if self.isChangeFirst {
+                    label.textColor = UIColor.white
+                }else{
+                    label.textColor = noSelectTitleColor
+                }
             }
             // 3.设置label的frame
             let labelW : CGFloat = 20 + UILabel.getWidthWith(title: title, font: UIFont.getNormalFontWith(size: 16))
@@ -301,18 +309,19 @@ extension YLSegmentSliderController {
         
         
         if selectIndex == 0 {
-            
+            self.isChangeFirst = true
             if lineIsScroling == false {
+                
                 scrollLine.isHidden = true
                 searchButton.setImage(UIImage.init(named: "nav_search"), for: .normal)
 
-                targetLabel.textColor = selectTitleColor
+                targetLabel.textColor = UIColor.white
                 sourceLabel.font = UIFont.getFontWith(size: 14, fontName: "PingFangSC-Regular")
                 targetLabel.font = UIFont.getFontWith(size: 16, fontName: "PingFangSC-Semibold")
                 for i in 0..<titleLabels.count {
                     let label = titleLabels[i]
                     if i != 0 {
-                        label.textColor = noSelectTitleColor
+                        label.textColor = UIColor.white
                     }
                 }
             }else {
@@ -330,6 +339,7 @@ extension YLSegmentSliderController {
                 }
             }
         }else {
+            self.isChangeFirst = false
             scrollLine.isHidden = false
             searchButton.setImage(UIImage.init(named: "search_select"), for: .normal)
             targetLabel.textColor = selectTitleColor
@@ -384,14 +394,15 @@ extension YLSegmentSliderController{
         
         // 3.切换文字的颜色
         if currentLabel.tag == 0 {
+            self.isChangeFirst = true
             if lineIsScroling == false {
                 scrollLine.isHidden = true
                 searchButton.setImage(UIImage.init(named: "nav_search"), for: .normal)
-                currentLabel.textColor = selectTitleColor
+                currentLabel.textColor = UIColor.white
                 for i in 0..<titleLabels.count {
                     let label = titleLabels[i]
                     if i != 0 {
-                        label.textColor = noSelectTitleColor
+                        label.textColor = UIColor.white
                     }
                 }
             }else {
@@ -408,6 +419,7 @@ extension YLSegmentSliderController{
             
             
         }else {
+            self.isChangeFirst = false
             scrollLine.isHidden = false
             searchButton.setImage(UIImage.init(named: "nav_search"), for: .normal)
             currentLabel.textColor = selectTitleColor
